@@ -7,9 +7,8 @@ class GammaPlot:
     @staticmethod
     def singleGamma(df_: DataFrame, title: str = None, save=False):
 
-        fig,ax = plt.subplots(figsize=(10, 15), dpi=300)
-        
-        
+        fig, ax = plt.subplots(figsize=(10, 15), dpi=300)
+
         plt.title(title)
         ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
         ylim = (df_['DEPT'].max(), df_['DEPT'].min())
@@ -22,7 +21,6 @@ class GammaPlot:
             plt.savefig(f'{title}.png')
             plt.close(fig)
             return
-
 
     @staticmethod
     def Rgamma(df_: DataFrame, title: str = None, save=False):
@@ -40,5 +38,3 @@ class GammaPlot:
         ax1.grid()  # Display the grid
         if save:
             plt.savefig(f'{title}.png')
-        
-            

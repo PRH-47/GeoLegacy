@@ -5,14 +5,14 @@ import pathlib
 
 
 class LisPlaza:
-    
-    DlisFileList:list[DlisBelo]
 
-    def __init__(self,pathlist:list[pathlib.Path]) -> None:
-        self.DlisFileList=[]
+    DlisFileList: list[DlisBelo]
+
+    def __init__(self, pathlist: list[pathlib.Path]) -> None:
+        self.DlisFileList = []
         self.OpenList(pathlist)
 
-    def OpenList(self,pathlib:list[pathlib.Path]) -> None:
+    def OpenList(self, pathlib: list[pathlib.Path]) -> None:
         try:
             for path in pathlib:
                 dl = dlis.load(f'{path}')
@@ -28,7 +28,5 @@ class LisPlaza:
             for dataframe in file.DATAFRAMELIST:
                 if 'GR' in dataframe['DATAFRAME'].columns.values:
                     GammaData.append(dataframe)
-        
-        return GammaData
 
-        
+        return GammaData

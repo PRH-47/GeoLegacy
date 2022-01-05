@@ -34,14 +34,13 @@ class MnemonicFix:
         if ' RGR ' in df.columns.values:
             df.rename(columns={' RGR ': 'RGR'}, inplace=True)
 
-    
         return df
 
     @staticmethod
     def IndexToDept(df) -> DataFrame:
-        
+
         for col in df.columns.values:
-            if 'INDEX' in col :
+            if 'INDEX' in col:
                 target = col
                 df.rename(columns={target: 'DEPT'}, inplace=True)
 
