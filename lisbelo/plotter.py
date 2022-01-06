@@ -6,6 +6,9 @@ class GammaPlot:
 
     @staticmethod
     def singleGamma(df_: DataFrame, title: str = None, save=False):
+        """
+        Plotter for a single Gamma plot.
+        """
 
         fig, ax = plt.subplots(figsize=(10, 15), dpi=300)
 
@@ -24,10 +27,13 @@ class GammaPlot:
 
     @staticmethod
     def Rgamma(df_: DataFrame, title: str = None, save=False):
+        """
+        Plotter for RGR plots.
+        """
 
         fig = plt.subplots(figsize=(10, 15), dpi=300)
-        if title:
-            plt.title(title)
+
+        plt.title(title)
         ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
         ylim = (df_['DEPT'].max(), df_['DEPT'].min())
         # Call the data from the df dataframe

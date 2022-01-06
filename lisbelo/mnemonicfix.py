@@ -2,6 +2,9 @@ from pandas import DataFrame
 
 
 class MnemonicFix:
+    """
+    Main class for fixing mnemonics.
+    """
 
     @staticmethod
     def depthrename(df) -> DataFrame:
@@ -38,7 +41,10 @@ class MnemonicFix:
 
     @staticmethod
     def IndexToDept(df) -> DataFrame:
-
+        """
+        This function is specially usefull for Dlis files
+        that have index in place of depth.
+        """
         for col in df.columns.values:
             if 'INDEX' in col:
                 target = col

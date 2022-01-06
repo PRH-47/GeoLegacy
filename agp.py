@@ -15,12 +15,12 @@ import json
 #
 
 class Search_Path:
-    def Search_Exten(folder_path, extension,):
-        '''
+    def Search_Exten(folder_path, extension):
+        """
         Essa função pega um PATH e uma LISTA de extensões
         e retorna uma lista contendo os arquivos que correspondem
         aos arquivos da extensão encontrados.
-        '''
+        """
         extension: str
         extensions = extension
         filelist = []
@@ -28,17 +28,15 @@ class Search_Path:
         for path in folder_path.glob(r'**/*'):
             if path.suffix in extensions:
                 filelist.append(path)
-        else:
-            pass
 
         return filelist
 
     def Search_Files(folder_path: pathlib.Path, name_):
-        '''
+        """
         Essa função pega um PATH e uma LISTA de nomes
         e retorna uma lista contendo os arquivos que correspondem
         aos arquivos de nome encontrados.
-        '''
+        """
         name_: str.lower()
         name_: str.format()
         name_list = [name_]
@@ -69,26 +67,26 @@ class Search_Path:
 
 class Open_Service:
 
-    '''
+    """
         This class is used to speed the opening and closing of .txt files
         using instance of with, to deal with the process.
         You can choose how you want to 'tag' your files.
         Tuples, Dict or none.
-    '''
+    """
 
     def _Tuples(list_):
-        '''
+        """
             This function the Tuple style Opening to a list.
             It takes a list, open the .TXT files,
             and returns a tuple, with (filename,lines of the file)
-        '''
+        """
         return Open_Service.List_Iter(list_, Open_Service.Open_style.Open_With_Tuple)
 
     def List_Iter(list_, func_):
-        '''
-            This function applies a function to a list.
-            It retunrns a list with the opend files.
-        '''
+        """
+        This function applies a function to a list.
+        It retunrns a list with the opend files.
+        """
         op_list = []
         for x in list_:
             func_(x)
@@ -98,22 +96,22 @@ class Open_Service:
     class Open_style:
 
         def Open(path: pathlib.Path):
-            '''
+            """
             Essa função pega um PATH  de arquivo TXT e retorna
-                        uma lista de LINHAS que o arquivo contem            
-            '''
+            uma lista de LINHAS que o arquivo contem            
+            """
             if path.is_file():
                 with open(path, encoding="ISO-8859-1") as f:
                     lines = f.readlines()
                 return lines
 
         def Open_With_Tuple(path: pathlib.Path):
-            '''
+            """
             Essa função pega um PATH  de arquivo TXT 
                 e retorna uma TUPLA cujo X[0]= PATHNAME
                 e X[1] uma lista de  LINHAS strings que o arquivo contem
 
-            '''
+            """
             # Transformação para Pure Path
             sss = os.path.split(path)[1]
 
@@ -133,10 +131,10 @@ class Open_Service:
                 print('Is not file')
 
         def Open_With_Tag(path):
-            ''' 
+            """ 
             Essa função pega um PATH e uma DICT de nomes de arquivos
             e retorna uma lista de string que o arquivo contem
-            '''
+            """
             # Transformação para Pure Path
             sss = os.path.split(path)[1]
 
@@ -155,9 +153,9 @@ class Open_Service:
 class TXT_POOL_SEARCH:
 
     def List_Search(list_, name_):
-        ''' 
+        """ 
         Essa função procura um nome em uma LISTA
-        '''
+        """
         name_ = str.upper(name_)
         print(name_)
         for file_ in list_:
@@ -170,10 +168,10 @@ class TXT_POOL_SEARCH:
                     print(file_[0])
 
     def List_Search_T(list_, name_):
-        '''
+        """
         Essa função procura um nome em uma LISTA
         RETONA =
-        '''
+        """
 
         name_ = str.upper(name_)
         list_: list(tuple)
@@ -198,10 +196,10 @@ class TXT_POOL_SEARCH:
 
 
 class AGPOOL():
-    ''' 
+    """ 
         A classe AGPOOL cuida de receber a lista de textos abertos
         e os armazenar em sua POOL de Texto.
-    '''
+    """
 
     def __init__(self, text_list):
 
@@ -216,11 +214,11 @@ class AGPOOL():
         self.Text_Dive(text_list)
 
     def Text_Dive(self, txl_):
-        ''' 
+        """ 
         This function takes in a list of files.
         It adds the list to the POOL list.
         If the file is the OLD format, it will be added to DEFEC_POOL
-        '''
+        """
         print('Iniciando Recebimento dos ARQUIVOS')
         for x in txl_:
 
@@ -234,9 +232,9 @@ class AGPOOL():
         return
 
     def Print_index(self):
-        '''
+        """
             Displayer para tirar duvidas
-        '''
+        """
 
         print(f"___ Existem {len(self.POOL)} Arquivos __________________")
         print(f"__________________________________________")
@@ -250,15 +248,15 @@ class AGPOOL():
 
 
 class AGP_OLD:
-    '''
+    """
         This function takes care of the processing of
         old AGP files.
-    '''
+    """
 
     def __init__(self, list_):
-        '''
+        """
         Initial Sequence with Get_Structure_List
-        '''
+        """
 
         self.LIST_RECEIVE = []
         self.result_list = []
@@ -291,7 +289,7 @@ class AGP_OLD:
 
         """
 
-        for it in list_:
+        for file in list_:
             """
             Printing the items of the list and applying the sequence al·go·rithm
             """
@@ -300,7 +298,7 @@ class AGP_OLD:
             # print(it[1][0])
 
             # Executa a função Sequence na lista Recebida
-            temp = self.Sequence_AGP(it[1])
+            temp = self.Sequence_AGP(file[1])
 
             # print("# Cabeçalho Lido __________________________________________")
             # print(temp)
@@ -329,10 +327,10 @@ class AGP_OLD:
         leng = len(list_)-1
 
         def linesearch(list_):
-
-            # Procura por linhas conten
+            """
+            This function looks for lines that starts with -------
+            """
             for x in list_:
-                # linha começa com --------
                 if x[1].startswith("-----------"):
                     indexx.append(x[0])
 
@@ -366,10 +364,10 @@ class Striped_Slice:
         # print(self.Striped_Slices[0])
 
     def Text_Strip_S(self, list_,):
-        '''
+        """
         Essa função Split as fatias do textos e retorna
         as mesmas
-        '''
+        """
         result_list = []
 
         for section in list_:
@@ -381,22 +379,14 @@ class Striped_Slice:
                 sections.append(line)
             result_list.append(sections)
         self.Striped_Slices.append(result_list)
-        # print(result_list)
 
     def Get_Split_List(self, list_):
-        '''
+        """
         Essa função executa o Tesxt_split_S em uma lista
         as mesmas
-        '''
+        """
 
-        result_list = []
-
-        for it in list_:
-
-            temp = self.Text_Strip_S(it)
-            # print(temp)
-            result_list.append(temp)
-        return result_list
+        return [self.Text_Strip_S(it) for it in list_ ]
 
 
 class Unid_vertical:
@@ -458,11 +448,11 @@ class Unid_vertical:
                 self.NONVERTICAL_INDEX.append(file_)
 
     def Vertical_block(self, list_):
-        '''
+        """
         Essa Funcao pega os blocos processados que possuem UNID VERITCALIZADAS
         E extrai informação das linhas.
 
-        '''
+        """
         SPLITED_VERTICAL = []
         ERROR_LIST = []
         for sect in list_:
@@ -599,10 +589,10 @@ class AGP_HEAD:
 
 
 class LATLONG:
-    ''''
+    """'
         Pega a lista gerada pelo HEAD list e transforma em uma lista
         COntendo LAT E LONG
-    '''
+    """
 
     def __init__(self, list_) -> None:
 
@@ -660,19 +650,14 @@ class Unid_dict:
         self.POCO_SESSION_DICT = []
         self.makedict(list_)
 
-    def makedict(self, list_):
+    def makedict(self, list_:list[str]):
 
         for poco in list_:
 
-            # print(poco[1])
-
             pPOCO = re.split(" : ", poco[0])
-            #POCO = str(poco[:])
-            #pPOCO = str(poco[0])
+
             POCO = pPOCO[1].lstrip()
             POCO = POCO.rstrip()
-            # print("____________________________")
-            # print(POCO,type(POCO))
 
             POCO_COMPLETE = {}
             POCO_VERTICAL_FORM = {}

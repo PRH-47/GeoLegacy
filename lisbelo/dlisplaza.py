@@ -1,10 +1,18 @@
-from logging import exception
-from .dlisbelo import DlisBelo
-from dlisio import dlis
+from dataclasses import dataclass
 import pathlib
 
+from dlisio import dlis
 
+from .dlisbelo import DlisBelo
+
+
+@dataclass
 class LisPlaza:
+    """
+    This is the main class for dealing with multiple .Lis files
+    It aims to improve the workflow, and integration
+    with other frameworks such as Django or Flask.
+    """
 
     DlisFileList: list[DlisBelo]
 

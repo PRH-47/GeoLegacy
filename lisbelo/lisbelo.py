@@ -9,7 +9,7 @@ from lisbelo.mnemonicfix import MnemonicFix
 @dataclass
 class LisBelo:
     """
-    Classe principal para ler arquivos
+    Main class for dealing with .Lis files
     """
 
     LIS_SOUL: lis.PhysicalFile

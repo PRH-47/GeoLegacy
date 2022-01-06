@@ -6,6 +6,7 @@ import pathlib
 class Lis_Plaza:
     '''
     Lis_Plaza is the main list to hold the physical files.
+    And dealing with multiple files.
     '''
     logicalfileslist: list[LisBelo]
 
