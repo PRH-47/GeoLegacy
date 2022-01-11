@@ -8,8 +8,8 @@ from lisbelo.mnemonicfix import MnemonicFix
 
 @dataclass
 class LisBelo:
-    """ 
-    Classe principal para ler arquivos
+    """
+    Main class for dealing with .Lis files
     """
 
     LIS_SOUL: lis.PhysicalFile
@@ -17,12 +17,12 @@ class LisBelo:
     Logical_Dict_List: list[dict]
 
     def __init__(self, physical_file: lis.PhysicalFile) -> None:
-        """ 
-        This object takes a loaded LIS file , Merge its logical files 
+        """
+        This object takes a loaded LIS file , Merge its logical files
         And serialize them in a List of dicts
         """
         self.LIS_SOUL = physical_file
-        
+
         self.Merged_Logical_Files = []
         self.Logical_Dict_List = []
         self.DATAFRAME_LIST = []
@@ -38,7 +38,7 @@ class LisBelo:
         self.Merged_Logical_Files.extend(tail)
 
     def Logical_Persona(self) -> None:
-        """ 
+        """
         Processing each Logical file of the Phsycal FIle
         """
         # - Loop over all Logical files

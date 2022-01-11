@@ -1,18 +1,26 @@
-from logging import exception
-from .dlisbelo import DlisBelo
-from dlisio import dlis
+from dataclasses import dataclass
 import pathlib
 
+from dlisio import dlis
 
+from .dlisbelo import DlisBelo
+
+
+@dataclass
 class LisPlaza:
-    
-    DlisFileList:list[DlisBelo]
+    """
+    This is the main class for dealing with multiple .Lis files
+    It aims to improve the workflow, and integration
+    with other frameworks such as Django or Flask.
+    """
 
-    def __init__(self,pathlist:list[pathlib.Path]) -> None:
-        self.DlisFileList=[]
+    DlisFileList: list[DlisBelo]
+
+    def __init__(self, pathlist: list[pathlib.Path]) -> None:
+        self.DlisFileList = []
         self.OpenList(pathlist)
 
-    def OpenList(self,pathlib:list[pathlib.Path]) -> None:
+    def OpenList(self, pathlib: list[pathlib.Path]) -> None:
         try:
             for path in pathlib:
                 dl = dlis.load(f'{path}')
@@ -28,7 +36,5 @@ class LisPlaza:
             for dataframe in file.DATAFRAMELIST:
                 if 'GR' in dataframe['DATAFRAME'].columns.values:
                     GammaData.append(dataframe)
-        
-        return GammaData
 
-        
+        return GammaData

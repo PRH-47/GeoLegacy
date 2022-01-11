@@ -6,15 +6,16 @@ import pathlib
 class Lis_Plaza:
     '''
     Lis_Plaza is the main list to hold the physical files.
+    And dealing with multiple files.
     '''
-    logicalfileslist:list[LisBelo]
+    logicalfileslist: list[LisBelo]
 
     def __init__(self, pathlist: list[pathlib.Path]) -> None:
         '''
         This object needs an list of paths, so it can take care of the IO of .lis files
         '''
         self.pathlist = pathlist
-        self.logicalfileslist=[]
+        self.logicalfileslist = []
         self.OpenList()
 
     def OpenList(self) -> None:
