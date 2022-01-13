@@ -2,7 +2,45 @@ import re
 from collections import defaultdict
 from parser.textparser import RemoveWhiteSpace, SplitSpaceColon, ColonSplit
 
-class AGP_OLD:
+class Dados_TextPool:
+    pass
+
+
+class AGP_TextPool:
+    """ 
+    A classe AGP_TextPool cuida de receber a lista de textos abertos
+    e os armazenar em sua POOL de Texto.
+    """
+
+    def __init__(self, text_list):
+
+        self.AGP_OldFormat_Pool = []
+        self.AGP_NewFormat_Pool = []
+
+        self.Text_Dive(text_list)
+
+    def Text_Dive(self, txl_):
+        """ 
+        This function takes in a list of files.
+        It adds the list to the AGP_OldFormat_Pool list.
+        If the file is the OLD format, it will be added to AGP_NewFormat_Pool
+        """
+        print('Iniciando Recebimento dos ARQUIVOS')
+        for x in txl_:
+
+            if str('========') in str(x[1][0]):
+                self.AGP_NewFormat_Pool.append(x)
+            else:
+                self.AGP_OldFormat_Pool.append(x)
+
+        print(f'{len(self.AGP_OldFormat_Pool)} Pocos  Adicionados ao AGP_OldFormat_Pool')
+        print(f'{len(self.AGP_NewFormat_Pool)} Pocos  Adicionados ao AGP_NewFormat_Pool')
+
+
+class AGP_OldFormat:
+    """ 
+    This class takes care of opening and closing 
+    """
 
     def __init__(self, list_):
 
@@ -199,7 +237,7 @@ class UnidadesVerticais:
         self.ERROR_PARSED_VERT.append(ERROR_LIST)
 
 
-class AGP_HEAD:
+class AGP_Head:
     """"
         Classe responsavel pelo tratamento e classifacao 
         do HEAD.
