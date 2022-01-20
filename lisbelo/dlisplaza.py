@@ -7,7 +7,7 @@ from .dlisbelo import DlisBelo
 
 
 @dataclass
-class LisPlaza:
+class DlisPlaza:
     """
     This is the main class for dealing with multiple .Lis files
     It aims to improve the workflow, and integration
@@ -18,6 +18,7 @@ class LisPlaza:
 
     def __init__(self, pathlist: list[pathlib.Path]) -> None:
         self.DlisFileList = []
+        self.ErrorFileList = []
         self.OpenList(pathlist)
 
     def OpenList(self, pathlib: list[pathlib.Path]) -> None:
@@ -29,6 +30,7 @@ class LisPlaza:
                 dl.close()
         except Exception as e:
             print(e)
+            self.ErrorFileList.append(path)
 
     def GammaScan(self):
         GammaData = []
