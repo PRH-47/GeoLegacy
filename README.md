@@ -1,10 +1,8 @@
-# LisBelos
+# GeoLegacy
 
 Dlis & Lis files with easy acess.
 
-## Intro
-
-This project aims to ease the workflow with .Lis and .Dlis files. 
+This project aims to ease the workflow with legacy geological files such as .Lis and .Dlis extensions. 
 Also, it offers a text parser module to work with structured texts, such as AGP files from Petrobrás.
 
 ## Install
