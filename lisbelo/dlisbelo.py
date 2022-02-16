@@ -10,8 +10,7 @@ class DlisBelo:
 
     MergedLogicalFiles: list[dlis.LogicalFile]
 
-    def __init__(self, dlisfile: dlis.PhysicalFile, path) -> None:
-        self.path = path
+    def __init__(self, dlisfile: dlis.PhysicalFile) -> None:
         self.MergedLogicalFiles = []
         self.MergedFrames = []
         self.DataDictList = []
@@ -23,28 +22,25 @@ class DlisBelo:
 
     def MergeFiles(self, dlisfile: dlis.PhysicalFile) -> None:
         """
-        Junta os arquivos lógicos
+        Merges all the logical files inside a physucal file.
         """
         *files, = dlisfile
         self.MergedLogicalFiles.extend(files)
 
     def GetFrames(self, ):
         """
-        Junta os frames
+        Merges
         """
         self.origins = []
         for file in self.MergedLogicalFiles:
             for origin in file.origins:
-
                 self.origins.extend(origin.file_id)
-
             self.MergedFrames.extend(file.find('FRAME'))
 
     def GetOrigins(self):
         self.origins = []
         for file in self.MergedLogicalFiles:
             for origin in file.origins:
-
                 self.origins.append(origin.file_id)
 
     def MakeDataDict(self):
@@ -61,7 +57,7 @@ class DlisBelo:
 
         df = pd.DataFrame(frame.curves(strict=False))
         df = MnemonicFix.IndexToDept(df)
-        df = MnemonicFix.gammarename(df)
+        df = MnemonicFix.GammaRename(df)
 
         df['WELL'] = self.origins[0]
         DataDict['DATAFRAME'] = df

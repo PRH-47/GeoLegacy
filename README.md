@@ -7,12 +7,45 @@ Dlis & Lis files with easy acess.
 This project aims to ease the workflow with .Lis and .Dlis files. 
 Also, it offers a text parser module to work with structured texts, such as AGP files from Petrobrás.
 
+## Install
+
+You can install the files in this project via Makefile.
+Or, in case your computer doesn support make syntax, you can run the scripts located in the 
+[scripts folder](/scripts).
+
+#### Common Install
+
+There is a common install process with the command:
+
+```sh
+make setup_common
+```
+This process will install all the requirements in the PYTHONPATH
+
+#### Venv Install
+
+There is a virtual enviroment install process with the command:
+
+```sh
+make setup_venv
+```
+This process will install all the requirements in the virtual enviroment.
+
 # Table of Contents
 
+- [GammaScan](#GammaScan)
 - [Geofiles](#Geofiles)
 - [Lis](#Lis)
-- [Dis](#Dlis)
+- [Dlis](#Dlis)
 
+# GammaScan
+
+Both LisPlaza and DlisPlaza comes with the GammaScan.
+It searches all the dataframes in the file for a 'GR' column, and appends it in to list.
+
+```python
+gamma1 = Dlis_Plaza.GammaScan()
+```
 # Geofiles
 
 Here we have some functions to help find georelated files.

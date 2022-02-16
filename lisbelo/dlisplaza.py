@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import pathlib
 
 from dlisio import dlis
+from pandas import DataFrame
 
 from .dlisbelo import DlisBelo
 
@@ -21,9 +22,13 @@ class DlisPlaza:
         self.ErrorFileList = []
         self.OpenList(pathlist)
 
-    def OpenList(self, pathlib: list[pathlib.Path]) -> None:
+    def OpenList(self, pathlist: list[pathlib.Path]) -> None:
+        """
+        Open dlis files and stores them on a list.
+        If any errors, the files will be appended in the Errorfilelist.
+        """
         try:
-            for path in pathlib:
+            for path in pathlist:
                 dl = dlis.load(f'{path}')
                 dlbelo = DlisBelo(dl)
                 self.DlisFileList.append(dlbelo)
@@ -32,10 +37,14 @@ class DlisPlaza:
             print(e)
             self.ErrorFileList.append(path)
 
-    def GammaScan(self):
+    def GammaScan(self) -> list[DataFrame]:
+        """ 
+        Searches for dataframes that contains GR columns on it,
+        and returns a list of dataframes.
+        """
         GammaData = []
         for file in self.DlisFileList:
-            for dataframe in file.DATAFRAMELIST:
+            for dataframe in file.DataDictList:
                 if 'GR' in dataframe['DATAFRAME'].columns.values:
                     GammaData.append(dataframe)
 

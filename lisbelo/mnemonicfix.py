@@ -4,10 +4,15 @@ from pandas import DataFrame
 class MnemonicFix:
     """
     Main class for fixing mnemonics.
+    Searches for column values and replaces them.
     """
 
     @staticmethod
-    def depthrename(df) -> DataFrame:
+    def DepthRename(df:DataFrame) -> DataFrame:
+        """
+        Depth rename utility.
+        Searches for columns values with whitespaces and renames them.
+        """
         if 'DEPT(0)' in df.columns.values:
             df.rename(columns={'DEPT(0)': 'DEPT'}, inplace=True)
 
@@ -17,7 +22,11 @@ class MnemonicFix:
         return df
 
     @staticmethod
-    def gammarename(df: DataFrame) -> DataFrame:
+    def GammaRename(df: DataFrame) -> DataFrame:
+        """
+        GR rename utility.
+        Searches for columns values with whitespaces and renames them.
+        """
 
         if 'GR  ' in df.columns.values:
             df.rename(columns={'GR  ': 'GR'}, inplace=True)

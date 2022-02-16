@@ -48,7 +48,8 @@ class LisBelo:
             # - Loops over the Wellsite data
             for x in f.wellsite_data():
                 a = x.components()
-                Welldict = {c.mnemonic.lstrip().rstrip(): c.component for c in a}
+                Welldict = {c.mnemonic.lstrip().rstrip()
+                                              : c.component for c in a}
                 Merged_Logical_Files_DICT.update(Welldict)
             # - Format specs for the curves
             formatspecs = f.data_format_specs()
@@ -63,8 +64,8 @@ class LisBelo:
             data = lis.curves(f, format_spec, strict=False)
             # - Apending the dataframe
             df = pd.DataFrame(data[::-1])
-            df = MnemonicFix.depthrename(df)
-            df = MnemonicFix.gammarename(df)
+            df = MnemonicFix.DepthRename(df)
+            df = MnemonicFix.GammaRename(df)
             self.DATAFRAME_LIST.append(df)
             # - Stting the KEY data in the dict
             Merged_Logical_Files_DICT['DATA'] = data[::-1]
@@ -85,7 +86,6 @@ class LisBelo:
         return len(self.DATAFRAME_LIST)
 
     def GammaCheck(self) -> list[dict]:
-
         return [dict_ for dict_ in self.Logical_Dict_List if 'GR' in dict_['SPEC']]
 
     def GammaDataframe(self):
